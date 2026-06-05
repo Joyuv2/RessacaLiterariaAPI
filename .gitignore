@@ -208,3 +208,18 @@ __marimo__/
 .env
 venv/
 __pycache__/
+
+# Dependências
+node_modules/
+
+# Build
+.next/
+out/
+
+# Arquivos de ambiente local
+.env.local
+.env.*.local
+
+# Arquivos do sistema
+.DS_Store
+*.log
