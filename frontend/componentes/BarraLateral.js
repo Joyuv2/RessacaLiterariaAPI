@@ -15,18 +15,25 @@ export default function BarraLateral({ usuario, aoSair }) {
   return (
     <aside>
       <h3>Meu perfil</h3>
+
       <div>
         <strong>{usuario?.nome}</strong>
         <br />
         {usuario?.email}
       </div>
+
       <nav>
         {itens.map((item) => (
-          <Link key={item.aba} href={`/dashboard?aba=${item.aba}`}>
+          <Link
+            key={item.aba}
+            href={`/dashboard?aba=${item.aba}`}
+            className={abaAtual === item.aba ? 'ativo' : ''}
+          >
             {item.nome}
           </Link>
         ))}
       </nav>
+
       <button onClick={aoSair}>Sair da Conta</button>
     </aside>
   );

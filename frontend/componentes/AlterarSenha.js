@@ -8,28 +8,48 @@ export default function AlterarSenha() {
 
   const enviar = async (e) => {
     e.preventDefault();
+
     if (novaSenha !== confirmar) {
       setMsg('As senhas não coincidem');
       return;
     }
+
     try {
       await api.put('/usuarios/me', { senha: novaSenha });
       setMsg('Senha alterada com sucesso!');
       setNovaSenha('');
       setConfirmar('');
-    } catch {
+    } catch (err) {
       setMsg('Erro ao alterar senha');
     }
   };
 
   return (
-    <div>
+    <div className="secao-usuario alterar-senha-wrapper">
       <h1>Alterar senha</h1>
-      <form onSubmit={enviar}>
-        <input type="password" placeholder="Nova senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} required />
-        <input type="password" placeholder="Confirmar nova senha" value={confirmar} onChange={(e) => setConfirmar(e.target.value)} required />
-        <button type="submit">Alterar</button>
-        {msg && <p>{msg}</p>}
+
+      <form onSubmit={enviar} className="form-usuario">
+        <input
+          type="password"
+          placeholder="Nova senha"
+          value={novaSenha}
+          onChange={(e) => setNovaSenha(e.target.value)}
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Confirmar nova senha"
+          value={confirmar}
+          onChange={(e) => setConfirmar(e.target.value)}
+          required
+        />
+
+        <button className="btn-primario" type="submit">
+          Alterar
+        </button>
+
+        {msg && <p className="mensagem-feedback">{msg}</p>}
       </form>
     </div>
   );

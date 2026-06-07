@@ -1,8 +1,10 @@
 export default function Notificacoes() {
   return (
-    <div>
+    <div className="secao-usuario">
       <h1>Notificações</h1>
-      <p>Em breve você receberá alertas sobre novos comentários e grupos.</p>
+      <div className="notificacoes-placeholder">
+        Em breve você receberá alertas sobre novos comentários e grupos.
+      </div>
     </div>
   );
 }

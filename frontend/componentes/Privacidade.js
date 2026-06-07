@@ -1,8 +1,11 @@
 export default function Privacidade() {
   return (
-    <div>
+    <div className="secao-usuario">
       <h1>Privacidade</h1>
-      <p>Configurações de privacidade estarão disponíveis em breve.</p>
+
+      <div className="notificacoes-placeholder">
+        Configurações de privacidade estarão disponíveis em breve.
+      </div>
     </div>
   );
 }

@@ -4,10 +4,10 @@
   --papel:       #f5f0e8;
   --papel-escuro:#ede7d8;
   --tinta:       #833089;
-  --tinta-suave: #743a89;
+  --tinta-suave: #6d2e8d 100%;
   --vinho:       #7b2d7a;
-  --vinho-claro: #a63d88;
-  --dourado:     #9c3ab0;
+  --vinho-claro: #7a2161;
+  --dourado:     #3a155f 50%;
   --cinza-quente:#48294b;
   --borda:       #c99ac2;
   --branco:      #fdfaf5;
@@ -606,4 +606,4 @@ form p:not(:empty) {
     width: 100%;
     justify-content: center;
   }
-}
+} 
