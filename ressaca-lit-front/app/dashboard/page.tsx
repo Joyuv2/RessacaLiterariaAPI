@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import BarraLateral from '../componentes/BarraLateral';
-import PerfilInfo from '../componentes/PerfilInfo';
-import AlterarSenha from '../componentes/AlterarSenha';
-import Notificacoes from '../componentes/Notificacoes';
-import Privacidade from '../componentes/Privacidade';
-import api from '../servicos/api';
+import { useRouter } from 'next/compat/router';
+import BarraLateral from '@/app/componentes/BarraLateral';
+import PerfilInfo from '@/app/componentes/PerfilInfo';
+import AlterarSenha from '@/app/componentes/AlterarSenha';
+import Notificacoes from '@/app/componentes/Notificacoes';
+import Privacidade from '@/app/componentes/Privacidade';
+import api from '@/app/servicos/api';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function Dashboard() {
       return;
     }
     api.get('/usuarios/me')
-      .then(res => setUsuario(res.data))
+      .then((res: any) => setUsuario(res.data))
       .catch(() => {
         localStorage.removeItem('token');
         router.push('/');
@@ -49,7 +49,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{display: 'flex' }}>
       <BarraLateral usuario={usuario} aoSair={sair} />
       <main style={{ flex: 1, padding: '1rem' }}>
         {renderizar()}

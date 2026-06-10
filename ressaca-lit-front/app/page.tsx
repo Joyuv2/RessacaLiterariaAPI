@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from 'react';
-import { useRouter } from 'next/router';
-import api from '../servicos/api';
-import styles from '../styles/login.module.css';
+import { useRouter } from 'next/compat/router';
+import api from '@/app/servicos/api';
+import styles from '@/app/styles/login.module.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -9,7 +11,7 @@ export default function Login() {
   const [erro, setErro] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -19,7 +21,7 @@ export default function Login() {
       });
 
       localStorage.setItem('token', res.data.access_token);
-      router.push('/dashboard?aba=perfil');
+      router?.push('/dashboard?aba=perfil');
     } catch {
       setErro('E-mail ou senha inválidos');
     }

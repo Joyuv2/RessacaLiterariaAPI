@@ -6,7 +6,7 @@ export default function AlterarSenha() {
   const [confirmar, setConfirmar] = useState('');
   const [msg, setMsg] = useState('');
 
-  const enviar = async (e) => {
+  const enviar = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (novaSenha !== confirmar) {
