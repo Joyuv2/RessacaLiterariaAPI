@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/compat/router';
+import { useRouter } from 'next/navigation';
 import BarraLateral from '@/app/componentes/BarraLateral';
 import PerfilInfo from '@/app/componentes/PerfilInfo';
 import AlterarSenha from '@/app/componentes/AlterarSenha';
