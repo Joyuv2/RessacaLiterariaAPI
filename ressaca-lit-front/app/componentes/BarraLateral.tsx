@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { Usuario } from "@/app/models/usuario"
+import React from 'react';
 
-export default function BarraLateral({ usuario, aoSair }) {
+export default function BarraLateral({usuario, aoSair}: {usuario: Usuario|null, aoSair: () => void}) {
   const router = useRouter();
   const abaAtual = router.query.aba || 'perfil';
 
