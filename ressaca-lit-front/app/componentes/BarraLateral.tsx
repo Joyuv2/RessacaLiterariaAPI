@@ -1,21 +1,14 @@
 "use client";
 
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { redirect } from 'next/navigation';
 import { Usuario } from "@/app/models/usuario"
 import React from 'react';
 
 export default function BarraLateral({usuario, aoSair}: {usuario: Usuario|null, aoSair: () => void}) {
-  const router = useRouter();
-  const abaAtual = router.query.aba || 'perfil';
-
-  const itens = [
-    { nome: 'Minhas Informações', aba: 'perfil' },
-    { nome: 'Alterar senha', aba: 'senha' },
-    { nome: 'Notificações', aba: 'notificacoes' },
-    { nome: 'Privacidade', aba: 'privacidade' },
-  ];
-
+  if (usuario==null){
+    usuario = {nome: "Convidado", email: "convidado@gmail.com", senha: "exemplo", id: "0", tipo: "exemplo"}
+  } 
   return (
     <aside>
       <h3>Meu perfil</h3>
@@ -25,18 +18,6 @@ export default function BarraLateral({usuario, aoSair}: {usuario: Usuario|null, 
         <br />
         {usuario?.email}
       </div>
-
-      <nav>
-        {itens.map((item) => (
-          <Link
-            key={item.aba}
-            href={`/dashboard?aba=${item.aba}`}
-            className={abaAtual === item.aba ? 'ativo' : ''}
-          >
-            {item.nome}
-          </Link>
-        ))}
-      </nav>
 
       <button onClick={aoSair}>Sair da Conta</button>
     </aside>
