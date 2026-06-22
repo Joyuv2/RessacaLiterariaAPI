@@ -55,11 +55,9 @@ def me(current_user: Usuario = Depends(get_current_user)):
 def atualizar_perfil(dados: UsuarioUpdate, current_user: Usuario = Depends(get_current_user), db: Session = Depends(get_db)):
     if dados.nome:
         current_user.nome = dados.nome
-    if dados.email:
-        if db.query(Usuario).filter(Usuario.email == dados.email).first():
-            raise HTTPException(400, "E-mail já em uso")
+    if dados.email or dados.email == '':
         current_user.email = dados.email
-    if dados.senha:
+    if dados.senha or dados.senha == '':
         current_user.senha = hash_password(dados.senha)
     db.commit()
     return {"msg": "Perfil atualizado"}
