@@ -3,27 +3,28 @@
 import { useState } from 'react';
 import api from '@/app/servicos/api';
 import styles from '@/app/styles/login.module.css';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState('');
   const [erro, setErro] = useState('');
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const res = await api.post('/login', {
+      const res = await api.post('/cadastrar', {
         email,
         senha,
+        nome,
       });
 
       localStorage.setItem('token', res.data.access_token);
-      redirect('/dashboard?aba=perfil');
+      redirect('/dashboard');
     } catch {
-      setErro('E-mail ou senha inválidos');
+      setErro('Erro ao cadastrar, tente novamente');
     }
   };
 
@@ -44,6 +45,17 @@ export default function Login() {
           className={styles.form}
           onSubmit={handleSubmit}
         >
+
+        <input
+            className={styles.input}
+            type="text"
+            placeholder="Nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+          />
+
+
           <input
             className={styles.input}
             type="email"
@@ -66,10 +78,8 @@ export default function Login() {
             className={styles.botao}
             type="submit"
           >
-            Entrar
+            Cadastrar
           </button>
-
-          <Link className='text-indigo-400 underline' href={"/auth/cadastro"}>Não está cadastrado? Clique aqui</Link>
 
           {erro && (
             <p className={styles.erro}>

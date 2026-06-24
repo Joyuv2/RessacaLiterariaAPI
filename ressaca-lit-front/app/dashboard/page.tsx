@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/compat/router';
+import { redirect } from 'next/navigation';
 import BarraLateral from '@/app/componentes/BarraLateral';
 import PerfilInfo from '@/app/componentes/PerfilInfo';
 import AlterarSenha from '@/app/componentes/AlterarSenha';
@@ -8,51 +10,51 @@ import Privacidade from '@/app/componentes/Privacidade';
 import api from '@/app/servicos/api';
 
 export default function Dashboard() {
-  const router = useRouter();
-  const { aba } = router.query;
   const [usuario, setUsuario] = useState(null);
   const [carregando, setCarregando] = useState(true);
+  const [aba, setAba] = useState('perfil')
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      router.push('/');
-      return;
+      redirect('/')
     }
     api.get('/usuarios/me')
       .then((res: any) => setUsuario(res.data))
       .catch(() => {
         localStorage.removeItem('token');
-        router.push('/');
+        redirect('/');
       })
       .finally(() => setCarregando(false));
   }, []);
 
   const sair = () => {
     localStorage.removeItem('token');
-    router.push('/');
+    redirect('/');
   };
+
+  const handleClick = (aba: React.SetStateAction<string>) => {
+    setAba(aba)
+  }
 
   if (carregando) return <div>Carregando...</div>;
-
-  const renderizar = () => {
-    switch (aba) {
-      case 'senha':
-        return <AlterarSenha />;
-      case 'notificacoes':
-        return <Notificacoes />;
-      case 'privacidade':
-        return <Privacidade />;
-      default:
-        return <PerfilInfo usuario={usuario} setUsuario={setUsuario} />;
-    }
-  };
 
   return (
     <div style={{display: 'flex' }}>
       <BarraLateral usuario={usuario} aoSair={sair} />
       <main style={{ flex: 1, padding: '1rem' }}>
-        {renderizar()}
+        <div className='flex flex-row gap-4 cursor-pointer'>
+          <div onClick={() => handleClick('notificacoes')}>Notificações</div>
+          <div onClick={() => handleClick('perfil')}>Perfil de Usuario</div>
+          <div onClick={() => handleClick('senha')}>Alterar Senha</div>
+          <div onClick={() => handleClick('privacidade')}>Privacidade</div>
+        </div>
+        <div id="pages">
+          {aba == 'perfil' && (<div className='page' id='pagePerfil'><PerfilInfo usuario={usuario} setUsuario={setUsuario}/></div>)}
+          {aba == 'senha' && (<div className='page' id='pageSenha'><AlterarSenha /></div>)}
+          {aba == 'notificacoes' && (<div className='page' id='pageNotifica'><Notificacoes /></div>)}
+          {aba == 'privacidade' && (<div className='page' id='pagePriva'><Privacidade /></div>)}
+        </div>
       </main>
     </div>
   );

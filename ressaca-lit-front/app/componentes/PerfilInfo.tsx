@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import api from '../servicos/api';
+import { Usuario } from '../models/usuario';
 
-export default function PerfilInfo({ usuario, setUsuario }) {
+export default function PerfilInfo({ usuario, setUsuario }: {usuario: Usuario|null, setUsuario: Dispatch<SetStateAction<null>>}) {
   const [editando, setEditando] = useState(false);
   const [nome, setNome] = useState(usuario?.nome || '');
   const [email, setEmail] = useState(usuario?.email || '');
   const [novaSenha, setNovaSenha] = useState('');
 
   const salvar = async () => {
-    const dados = { nome, email };
+    const senha = null
+    const dados: {nome: String, email: String, senha: String|null} = { nome, email, senha };
     if (novaSenha) dados.senha = novaSenha;
 
     try {
@@ -23,7 +25,7 @@ export default function PerfilInfo({ usuario, setUsuario }) {
   };
 
   return (
-    <div className="secao-usuario">
+    <div className={"secao-usuario"}>
       <h1>Minhas Informações</h1>
 
       {!editando ? (
@@ -43,14 +45,14 @@ export default function PerfilInfo({ usuario, setUsuario }) {
         <div className="form-usuario">
           <input
             type="text"
-            value={nome}
+            value={nome.toString()}
             onChange={(e) => setNome(e.target.value)}
             placeholder="Nome"
           />
 
           <input
             type="email"
-            value={email}
+            value={email.toString()}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail"
           />
