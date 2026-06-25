@@ -21,9 +21,11 @@ export default function Login() {
       });
 
       localStorage.setItem('token', res.data.access_token);
-      redirect('/dashboard?aba=perfil');
     } catch {
       setErro('E-mail ou senha inválidos');
+    }
+    if (localStorage.getItem('token')) {
+      redirect('/dashboard', 'replace');
     }
   };
 

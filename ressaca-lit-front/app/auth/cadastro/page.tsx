@@ -22,9 +22,11 @@ export default function Login() {
       });
 
       localStorage.setItem('token', res.data.access_token);
-      redirect('/dashboard');
     } catch {
       setErro('Erro ao cadastrar, tente novamente');
+    }
+    if (localStorage.getItem('token')) {
+      redirect('/dashboard', 'replace');
     }
   };
 
