@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import api from '@/app/servicos/api';
-
+import "@/app/styles/usuario.css"
 
 interface ItemBiblioteca {
   id: number;

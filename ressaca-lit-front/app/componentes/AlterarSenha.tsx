@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import api from '../servicos/api';
+import "@/app/styles/usuario.css"
 
 export default function AlterarSenha() {
   const [novaSenha, setNovaSenha] = useState('');

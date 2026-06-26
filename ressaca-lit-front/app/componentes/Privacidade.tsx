@@ -1,3 +1,5 @@
+import "@/app/styles/usuario.css"
+
 export default function Privacidade() {
   return (
     <div className="secao-usuario">

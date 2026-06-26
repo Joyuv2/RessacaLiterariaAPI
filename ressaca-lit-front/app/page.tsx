@@ -5,6 +5,7 @@ import api from '@/app/servicos/api';
 import styles from '@/app/styles/login.module.css';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -31,19 +32,23 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
-        <img
-          src="/imagens/logo_sem_fundo.png"
-          alt="Ressaca Literária"
-          className={styles.logo}
-        />
+      <div className={`${styles.card} flex flex-row justify-around`}>
+        <div className='flex flex-col'>
+          <Image
+            src="/imagens/logo_sem_fundo.png"
+            alt="Ressaca Literária"
+            className={`${styles.logo} select-none`}
+            width={250}
+            height={250}
+          />
 
-        <h1 className={styles.titulo}>
-          Ressaca Literária
-        </h1>
+          <h1 className={`${styles.titulo} select-none`}>
+            Ressaca Literária
+          </h1>
+        </div>
 
         <form
-          className={styles.form}
+          className={`${styles.form} flex flex-col justify-center align-center`}
           onSubmit={handleSubmit}
         >
           <input
@@ -71,7 +76,7 @@ export default function Login() {
             Entrar
           </button>
 
-          <Link className='text-indigo-400 underline' href={"/auth/cadastro"}>Não está cadastrado? Clique aqui</Link>
+          <Link className='text-gray-300 underline' href={"/auth/cadastro"}>Não está cadastrado? Clique aqui</Link>
 
           {erro && (
             <p className={styles.erro}>
