@@ -1,3 +1,5 @@
+import "@/app/styles/usuario.css"
+
 export default function Notificacoes() {
   return (
     <div className="secao-usuario">

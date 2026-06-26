@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import api from '../servicos/api';
 import { Usuario } from '../models/usuario';
+import "@/app/styles/usuario.css"
 
 export default function PerfilInfo({ usuario, setUsuario }: {usuario: Usuario|null, setUsuario: Dispatch<SetStateAction<null>>}) {
   const [editando, setEditando] = useState(false);
@@ -26,7 +27,7 @@ export default function PerfilInfo({ usuario, setUsuario }: {usuario: Usuario|nu
 
   return (
     <div className={"secao-usuario"}>
-      <h1>Minhas Informações</h1>
+      <h1 className='select-none'>Minhas Informações</h1>
 
       {!editando ? (
         <div className="perfil-visualizar">
@@ -37,7 +38,7 @@ export default function PerfilInfo({ usuario, setUsuario }: {usuario: Usuario|nu
             <strong>E-mail:</strong> {usuario?.email}
           </p>
 
-          <button className="btn-primario" onClick={() => setEditando(true)}>
+          <button className="btn-primario mt-3" onClick={() => setEditando(true)}>
             Editar
           </button>
         </div>

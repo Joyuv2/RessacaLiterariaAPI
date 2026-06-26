@@ -23,10 +23,10 @@
   width: 800px;
 }
 
-.logo {
+/* .logo {
   width: 340px;
   transition: transform 0.3s ease;
-}
+} */
 
 .logo:hover {
   transform: scale(1.05);
