@@ -1,0 +1,29 @@
+:root {
+  --papel:       #f5f0e8;
+  --papel-escuro:#ede7d8;
+  --tinta:       #833089;
+  --tinta-suave: rgba(109, 46, 141, 1);
+  --vinho:       #7b2d7a;
+  --vinho-claro: #7a2161;
+  --dourado:     #3a155f 50%;
+  --cinza-quente:#48294b;
+  --borda:       #c99ac2;
+  --branco:      #fdfaf5;
+
+  --fonte-titulo: 'Playfair Display', Georgia, serif;
+  --fonte-corpo:  'Lora', Georgia, serif;
+  --fonte-mono:   'Fira Code', monospace;
+
+  --sombra-suave:  0 2px 12px rgba(28, 20, 16, 0.08);
+  --sombra-media:  0 4px 24px rgba(28, 20, 16, 0.14);
+  --sombra-forte:  0 8px 40px rgba(28, 20, 16, 0.20);
+
+  --raio:  6px;
+  --raio-lg: 12px;
+
+  --transicao: 200ms ease;
+}
+
+.barra_de_pesquisa {
+    background-color: var(--vinho);
+}

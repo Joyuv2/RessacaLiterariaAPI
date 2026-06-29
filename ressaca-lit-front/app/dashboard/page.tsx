@@ -19,20 +19,20 @@ export default function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      redirect('/')
+      redirect('/', 'replace')
     }
     api.get('/usuarios/me')
       .then((res: any) => setUsuario(res.data))
       .catch(() => {
         localStorage.removeItem('token');
-        redirect('/');
+        redirect('/', 'replace');
       })
       .finally(() => setCarregando(false));
   }, []);
 
   const sair = () => {
     localStorage.removeItem('token');
-    redirect('/');
+    redirect('/', 'replace');
   };
 
   const handleClick = (aba: React.SetStateAction<string>) => {

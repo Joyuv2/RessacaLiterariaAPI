@@ -40,6 +40,7 @@ export default function Login() {
             className={`${styles.logo} select-none`}
             width={250}
             height={250}
+            loading="eager"
           />
 
           <h1 className={`${styles.titulo} select-none`}>

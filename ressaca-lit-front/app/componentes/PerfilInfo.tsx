@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import api from '../servicos/api';
 import { Usuario } from '../models/usuario';
+import { useRouter } from 'next/navigation';
 import "@/app/styles/usuario.css"
 
 export default function PerfilInfo({ usuario, setUsuario }: {usuario: Usuario|null, setUsuario: Dispatch<SetStateAction<null>>}) {
+  const router = useRouter();
   const [editando, setEditando] = useState(false);
   const [nome, setNome] = useState(usuario?.nome || '');
   const [email, setEmail] = useState(usuario?.email || '');
