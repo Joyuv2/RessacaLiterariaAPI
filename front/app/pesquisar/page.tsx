@@ -6,6 +6,7 @@ import axios from "axios"
 import Image from "next/image"
 import { useState } from "react"
 import { Livro } from "@/app/models/livro"
+import Link from "next/link"
 
 // function imageLoader({ src }: {src: string | number}) {
 //     if (src != "/imagens/naoencontrado.png") {
@@ -76,6 +77,7 @@ export default function Page() {
                             ))}</span>
                             }
                             {livro.author_name && livro.author_name.length == 1 && <span className="font-bold mt-3 border-t-1 border-black">Autor: {livro.author_name}</span>}
+                            <Link href={`/livro?key=${livro.key}`} className="mt-3 text-center bg-background3 p-2 rounded hover:bg-background4 transition-colors">Ver mais</Link>
                         </div>
                     ))}
                     {estado == 'carregando' && <span className="">Carregando...</span>}

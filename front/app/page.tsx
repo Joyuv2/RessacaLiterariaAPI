@@ -1,21 +1,30 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '@/app/servicos/api';
 import styles from '@/app/styles/login.module.css';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 import { Limelight } from 'next/font/google';
+import { useNav } from './componentes/NavContext';
 
 const fontLime = Limelight({
   weight: "400"
-})
+});
 
 export default function Login() {
+  const { setLinks } = useNav();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+
+  useEffect(() => {
+    setLinks([
+      { label: 'Entrar', href: '/' },
+      { label: 'Cadastro', href: '/auth/cadastro' },
+    ]);
+  }, [setLinks]);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

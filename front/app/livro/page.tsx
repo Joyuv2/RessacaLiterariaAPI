@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBook } from "./action";
+import { useNav } from "../componentes/NavContext";
 
 interface Livro {
     title: string,
@@ -11,10 +12,18 @@ interface Livro {
 }
 
 export default function Page() {
+    const { setLinks } = useNav();
     const [book, setBook] = useState<Livro>()
     const [error, setError] = useState<string>()
     const params = useSearchParams()
     const key = params.get("key")
+
+    useEffect(() => {
+        setLinks([
+            { label: 'Livros', href: '/livros' },
+            { label: 'Entrar', href: '/login' },
+        ]);
+    }, [setLinks]);
 
     useEffect(() => {
         getBook(key!).then((v) => {
