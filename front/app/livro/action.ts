@@ -10,7 +10,7 @@ interface Livro {
 
 export async function getBook(key: string) {
     try {
-        const book: Livro = await (await axios.get(`https://openlibrary.org/works/${key}.json`)).data
+        const book: Livro = await axios.get(`https://openlibrary.org${key}.json`).then(res => res.data)
         console.log(book)
         if (book) {
             return {result: "Success", book: book}
@@ -18,7 +18,7 @@ export async function getBook(key: string) {
             return {error: "erro, livro não encontrado"}
         }
     } catch(e) {
-        return {error: "erro", e}
+        return {error: String(e)}
     }
     
 }

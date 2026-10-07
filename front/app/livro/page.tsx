@@ -7,7 +7,7 @@ import { useNav } from "../componentes/NavContext";
 
 interface Livro {
     title: string,
-    description: {type: string, value: string},
+    description?: {type: string, value: string},
     authors: {author: {key:string}, type: {key:string}}[]
 }
 
@@ -20,7 +20,7 @@ export default function Page() {
 
     useEffect(() => {
         setLinks([
-            { label: 'Livros', href: '/livros' },
+            { label: 'Livros', href: '/pesquisar' },
             { label: 'Entrar', href: '/login' },
         ]);
     }, [setLinks]);
@@ -41,7 +41,7 @@ export default function Page() {
             {book && 
                 <div className="flex flex-col items-center w-95/100 p-10 bg-background2 h-90/100">
                     <h1 className="text-3xl font-bold">Título: {book.title}</h1>
-                    <h2 className="text-xl">{book.description.value}</h2>
+                    {book.description && <h2 className="text-xl">{book.description.value}</h2>}
                 </div>
             }
             {error && 

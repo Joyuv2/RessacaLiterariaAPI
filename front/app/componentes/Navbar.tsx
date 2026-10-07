@@ -5,7 +5,9 @@ import { useNav } from './NavContext';
 
 export default function Navbar() {
     const { links } = useNav();
-
+    if (!links || links.length === 0) {
+        return null;
+    }
     return (
         <nav className="w-full max-w-full overflow-x-hidden bg-background2 px-4 py-3 shadow-sm">
             <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-4 max-w-full">
